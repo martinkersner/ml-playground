@@ -2,5 +2,5 @@
 
 ## Expectation-Maximization
 <center>
-<img href="http://i.imgur.com/OYdHnSg.png" />
+<img src="http://i.imgur.com/OYdHnSg.png" />
 </center>
