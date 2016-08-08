@@ -35,6 +35,8 @@ def generate_gaussian(n_samples=300, n_dims=2):
 def train_data(data):
     clf = mixture.GMM(n_components=3, covariance_type='full')
     clf.fit(data)
+    print_model_detail("AIC", clf.aic(data))
+    print_model_detail("BIC", clf.bic(data))
 
     return clf
 
