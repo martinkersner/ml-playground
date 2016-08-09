@@ -46,8 +46,25 @@ def model_details(clf):
     print_model_detail("Covariances", clf.covars_)
     print_model_detail("Converged", clf.converged_)
 
+    ax = plt.axes()
+    for i in range(0, len(clf.covars_)):
+        draw_arrow(ax, clf.means_[i], clf.covars_[i])
+
+
 def print_model_detail(name, detail):
     print "{}: \n{}\n".format(name, detail)
+
+def draw_arrow(ax, mean, covar):
+    '''
+    Directions of the arrow correspond to the eigenvector of covariance matrix and their length to the square root of the eigenvalues.
+    '''
+    x_0 = mean[0]
+    y_0 = mean[1]
+    vals, vecs = np.linalg.eig(covar)
+    sqrt_vals = np.sqrt(vals)
+
+    ax.arrow(x_0, y_0, vecs[0, 0]*sqrt_vals[0], vecs[1, 0]*sqrt_vals[0], head_width=0.05, head_length=0.1, fc='k', ec='k')
+    ax.arrow(x_0, y_0, vecs[0, 1]*sqrt_vals[1], vecs[1, 1]*sqrt_vals[1], head_width=0.05, head_length=0.1, fc='k', ec='k')
 
 def plot_data(data, clf):
     min_x = np.min(data[:, 0])
