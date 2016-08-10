@@ -19,8 +19,8 @@ chi_square_prob[90] = 4.605
 
 def main():
   mean  = np.array([0.0, 0.0])
-  C = np.array([[1.0, 0.8],
-                [0.8, 1.5]])
+  C = np.array([[6.0, -4.0],
+                [-4.0, 6.0]])
   n_samples = 1000
 
   plt.ylim([-8, 8])
@@ -51,15 +51,15 @@ def plot_arrow(ax, vals, vecs, mean, C):
   head_length = 0.1
   fc = ec = "aqua"
 
-  ax.arrow(mean[0], mean[1], vecs[0, 0]*sqrt_vals[0], vecs[1, 0]*sqrt_vals[0], head_width=head_width, head_length=head_length, fc='g', ec='g')
-  ax.arrow(mean[0], mean[1], vecs[0, 1]*sqrt_vals[1], vecs[1, 1]*sqrt_vals[1], head_width=head_width, head_length=head_length, fc='g', ec='g')
+  ax.arrow(mean[0], mean[1], vecs[0, 0]*sqrt_vals[0], vecs[1, 0]*sqrt_vals[0], head_width=head_width, head_length=head_length, fc=fc, ec=ec)
+  ax.arrow(mean[0], mean[1], vecs[0, 1]*sqrt_vals[1], vecs[1, 1]*sqrt_vals[1], head_width=head_width, head_length=head_length, fc=fc, ec=ec)
 
 def plot_ellipse(ax, vals, vecs, mean, data_std, prob_val, edgecolor, data):
-  width  = 2*np.sqrt(chi_square_prob[prob_val]*vals[0])
-  height = 2*np.sqrt(chi_square_prob[prob_val]*vals[1])
-
   # according to http://www.visiondummy.com/2014/04/draw-error-ellipse-representing-covariance-matrix/ we should emply max value 
-  min_idx = np.argmin(vals)
+  min_idx = np.argmax(vals)
+  width  = 2*np.sqrt(chi_square_prob[prob_val]*vals[min_idx])
+  height = 2*np.sqrt(chi_square_prob[prob_val]*vals[np.abs(min_idx-1)])
+
   angle = np.degrees(np.arctan(vecs[1, min_idx]/vecs[0, min_idx]))
 
   el = Ellipse(xy=mean, width=width, height=height, angle=angle, edgecolor=edgecolor, fc='None', lw=1)
