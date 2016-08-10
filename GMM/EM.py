@@ -62,9 +62,10 @@ def draw_arrow(ax, mean, covar):
     y_0 = mean[1]
     vals, vecs = np.linalg.eig(covar)
     sqrt_vals = np.sqrt(vals)
+    fc = ec = "aqua"
 
-    ax.arrow(x_0, y_0, vecs[0, 0]*sqrt_vals[0], vecs[1, 0]*sqrt_vals[0], head_width=0.05, head_length=0.1, fc='k', ec='k')
-    ax.arrow(x_0, y_0, vecs[0, 1]*sqrt_vals[1], vecs[1, 1]*sqrt_vals[1], head_width=0.05, head_length=0.1, fc='k', ec='k')
+    ax.arrow(x_0, y_0, vecs[0, 0]*sqrt_vals[0], vecs[1, 0]*sqrt_vals[0], head_width=0.05, head_length=0.1, fc=fc, ec=ec)
+    ax.arrow(x_0, y_0, vecs[0, 1]*sqrt_vals[1], vecs[1, 1]*sqrt_vals[1], head_width=0.05, head_length=0.1, fc=fc, ec=ec)
 
 def plot_data(data, clf):
     min_x = np.min(data[:, 0])
