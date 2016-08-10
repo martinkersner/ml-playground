@@ -20,7 +20,7 @@ chi_square_prob[90] = 4.605
 def main():
   mean  = np.array([0.0, 0.0])
   C = np.array([[1.0, 0.8],
-                [0.5, 1.5]])
+                [0.8, 1.5]])
   n_samples = 1000
 
   plt.ylim([-8, 8])
