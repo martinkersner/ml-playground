@@ -84,6 +84,7 @@ def plot_data(data, clf):
     plt.contour(X, Y, Z, norm=LogNorm(vmin=1.0, vmax=500.0), levels=np.logspace(0, 2, 20))
     plt.scatter(data[:, 0], data[:, 1], 1.0)
 
+    plt.axis('equal') # plots graph with equal axis ratio
     plt.show()
 
 if __name__ == "__main__":
