@@ -41,6 +41,7 @@ def main():
   plot_ellipse(ax, vals, vecs, mean, data_std, 95, 'g', data)
   plot_ellipse(ax, vals, vecs, mean, data_std, 90, 'b', data)
 
+  plt.axis('equal') # plots graph with equal axis ratio
   plt.show()
 
 def plot_arrow(ax, vals, vecs, mean, C):
@@ -49,17 +50,6 @@ def plot_arrow(ax, vals, vecs, mean, C):
   head_width  = 0.05
   head_length = 0.1
   fc = ec = "aqua"
-
-  #alpha_0 = np.arctan(vecs[1, 0]/vecs[0, 0])
-  #dx_0 = np.cos(alpha_0)*sqrt_vals[0]
-  #dy_0 = np.sin(alpha_0)*sqrt_vals[0]
-
-  #alpha_1 = np.arctan(vecs[1, 1]/vecs[0, 1])
-  #dx_1 = np.cos(alpha_1)*sqrt_vals[1]
-  #dy_1 = np.sin(alpha_1)*sqrt_vals[1]
-
-  #ax.arrow(mean[0], mean[1], dx_0, dy_0, head_width=head_width, head_length=head_length, fc=fc, ec=ec)
-  #ax.arrow(mean[0], mean[1], dx_1, dy_1, head_width=head_width, head_length=head_length, fc=fc, ec=ec)
 
   ax.arrow(mean[0], mean[1], vecs[0, 0]*sqrt_vals[0], vecs[1, 0]*sqrt_vals[0], head_width=head_width, head_length=head_length, fc='g', ec='g')
   ax.arrow(mean[0], mean[1], vecs[0, 1]*sqrt_vals[1], vecs[1, 1]*sqrt_vals[1], head_width=head_width, head_length=head_length, fc='g', ec='g')
