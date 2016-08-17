@@ -41,16 +41,16 @@ def plot_line(clf, X):
   max_x = max(X)[0]
 
   # prediction using built-in function
-  min_y = clf.predict(min_x)
-  max_y = clf.predict(max_x)
+  min_y_0 = clf.predict(min_x)
+  max_y_0 = clf.predict(max_x)
 
   # prediction using calculatd intercept and coefficient
-  min_y = my_predict(clf.intercept_, clf.coef_, min_x)
-  max_y = my_predict(clf.intercept_, clf.coef_, max_x)
+  min_y_1 = my_predict(clf.intercept_, clf.coef_, min_x)
+  max_y_1 = my_predict(clf.intercept_, clf.coef_, max_x)
 
   # lines should overlap, only the red one should be visible
-  plt.plot([min_x, max_x], [min_y, max_y], color='b', linestyle='-', linewidth=2)
-  plt.plot([min_x, max_x], [min_y, max_y], color='r', linestyle='-', linewidth=2)
+  plt.plot([min_x, max_x], [min_y_0, max_y_0], color='b', linestyle='-', linewidth=2)
+  plt.plot([min_x, max_x], [min_y_1, max_y_1], color='r', linestyle='-', linewidth=2)
 
 def my_predict(intercept, coef, x):
     return intercept + x*coef
