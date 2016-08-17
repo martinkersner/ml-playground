@@ -24,16 +24,25 @@ def main():
   clf = linear_model.LinearRegression()
   clf.fit(X, y)
 
-  print "Coefficients: \n", clf.coef_
+  print "Coefficients: \n", clf.coef_[0]
   print "Intercept: \n", clf.intercept_
 
   ax = plt.axes()
   plot_data(data)
+  plot_line(clf, X)
   plt.axis('equal') # plots graph with equal axis ratio
   plt.show()
 
 def plot_data(data):
   plt.scatter(data[:, 0], data[:, 1], 1.0)
+
+def plot_line(clf, X):
+  min_x = min(X)[0]
+  max_x = max(X)[0]
+  min_y = clf.predict(min_x)
+  max_y = clf.predict(max_x)
+
+  plt.plot([min_x, max_x], [min_y, max_y], color='b', linestyle='-', linewidth=2)
 
 if __name__ == "__main__":
   main()
